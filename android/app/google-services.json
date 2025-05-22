@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "813628768784",
+    "project_id": "mynotes-shashwat-raj",
+    "storage_bucket": "mynotes-shashwat-raj.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813628768784:android:1242a2373ed3e4c76f4095",
+        "android_client_info": {
+          "package_name": "com.example.mynotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQFow0OJMwj8bDa59uUAoOEQIY5r9FUbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
