@@ -87,3 +87,21 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 }
+
+/*
+if (e.code == 'email-already-in-use') {
+                  if (context.mounted) {
+                    await showErrorDialog(context, 'email-already-in-use');
+                  }
+                }
+                if (e.code == 'weak-password') {
+                  if (context.mounted) {
+                    await showErrorDialog(context, 'weak-password');
+                  }
+                }
+                if (e.code == 'invalid-email') {
+                  if (context.mounted) {
+                    await showErrorDialog(context, 'invalid-email');
+                  }
+                }
+*/
