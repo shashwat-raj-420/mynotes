@@ -20,6 +20,7 @@ void main() {
         loginRoute: (context) => const LoginView(),
         registerRoute: (context) => const RegisterView(),
         notesRoute: (context) => const NotesView(),
+        verifyEmailRoute: (context) => const VerifyEmailView(),
       },
     ),
   );
@@ -49,7 +50,10 @@ class HomePage extends StatelessWidget {
             }
           default:
             return Scaffold(
-              appBar: AppBar(title: Text('My Notes')),
+              appBar: AppBar(
+                title: Text('My Notes'),
+                backgroundColor: Colors.blue,
+              ),
               body: CircularProgressIndicator(),
             );
         }
