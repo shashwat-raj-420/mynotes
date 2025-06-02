@@ -157,12 +157,14 @@ class NotesService {
   Future<DatabaseUser> getUser({required String email}) async {
     await _ensureDatabaseIsOpen();
     final db = _getDatabaseOrThrow();
+
     final results = await db.query(
       userTable,
       limit: 1,
       where: 'email = ?',
       whereArgs: [email.toLowerCase()],
     );
+
     if (results.isEmpty) {
       throw CouldNotFindUser();
     } else {
@@ -189,7 +191,7 @@ class NotesService {
     return DatabaseUser(id: userId, email: email);
   }
 
-  Future<void> deleteUSer({required String email}) async {
+  Future<void> deleteUser({required String email}) async {
     await _ensureDatabaseIsOpen();
     final db = _getDatabaseOrThrow();
     final deletedCount = await db.delete(
@@ -245,7 +247,7 @@ class NotesService {
       await db.execute(createNoteTable);
       await _cacheNotes();
     } on MissingPlatformDirectoryException {
-      throw UnableToGetDoctumentsDirectory();
+      throw UnableToGetDocumentsDirectory();
     }
   }
 }
