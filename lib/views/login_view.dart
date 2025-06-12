@@ -38,7 +38,10 @@ class _LoginViewState extends State<LoginView> {
       listener: (context, state) async {
         if (state is AuthStateLoggedOut) {
           if (state.exception is InvalidCredentialAuthException) {
-            await showErrorDialog(context, 'Invalid Credential');
+            await showErrorDialog(
+              context,
+              'Cannot find a user with the entered credentials!',
+            );
           } else if (state.exception is GenericAuthException) {
             await showErrorDialog(context, 'Authentication error');
           }
@@ -49,46 +52,70 @@ class _LoginViewState extends State<LoginView> {
           title: const Text('Login', style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.blue,
         ),
-        body: Column(
-          children: [
-            TextField(
-              controller: _email,
-              enableSuggestions: false,
-              autocorrect: false,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: 'Enter your email here',
-                hintStyle: TextStyle(color: Colors.grey),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: _email,
+                enableSuggestions: false,
+                autocorrect: false,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hintText: 'Enter your email here',
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
               ),
-            ),
-            TextField(
-              controller: _password,
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              decoration: InputDecoration(
-                hintText: 'Enter your password here',
-                hintStyle: TextStyle(color: Colors.grey),
+              TextField(
+                controller: _password,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: InputDecoration(
+                  hintText: 'Enter your password here',
+                  hintStyle: TextStyle(color: Colors.grey),
+                ),
               ),
-            ),
-            TextButton(
-              onPressed: () async {
-                final email = _email.text;
-                final password = _password.text;
-                context.read<AuthBloc>().add(AuthEventLogIn(email, password));
-              },
-              child: const Text('Login', style: TextStyle(color: Colors.blue)),
-            ),
-            TextButton(
-              onPressed: () {
-                context.read<AuthBloc>().add(const AuthEventShouldRegister());
-              },
-              child: const Text(
-                'Not yet regesterd? Register here!',
-                style: TextStyle(color: Colors.blue),
+              TextButton(
+                onPressed: () async {
+                  final email = _email.text;
+                  final password = _password.text;
+                  context.read<AuthBloc>().add(AuthEventLogIn(email, password));
+                },
+                child: const Text(
+                  'Login',
+                  style: TextStyle(color: Colors.blue),
+                ),
               ),
-            ),
-          ],
+              TextButton(
+                onPressed: () {
+                  context.read<AuthBloc>().add(const AuthEventForgotPassword());
+                },
+                child: const Text(
+                  'I forgot my password',
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        context.read<AuthBloc>().add(
+                          const AuthEventShouldRegister(),
+                        );
+                      },
+                      child: const Text(
+                        'Not yet regesterd? Register here!',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
