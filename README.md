@@ -1,7 +1,7 @@
 # 📝 MyNotes — Multi-Platform Note-Taking App
 
 **MyNotes** is a sleek, cloud-synced, and secure note-taking application built with **Flutter**.  
-It empowers users to **create, edit, and manage notes effortlessly** — all synced in real-time across **Android, iOS, Web, and Desktop** platforms.
+It empowers users to **create, edit, and manage notes effortlessly** — all synced in real-time across all platforms.
 
 ---
 
